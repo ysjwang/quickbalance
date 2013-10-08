@@ -3,15 +3,16 @@ module ApplicationHelper
   def stylized_flash(key)
       case key
         when :alert
-          "warning"
+          "alert-warning"
         when :error
-          "error"
+          "alert-danger"
         when :notice
-          "info"
+          "alert-info"
         when :success
-          "success"
+          "alert-success"
         else
-          key.to_s
+          # "alert-" + key.to_s
+          "alert-info" # just use default info for now.
       end
     end
     

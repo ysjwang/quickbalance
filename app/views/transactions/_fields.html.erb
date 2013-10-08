@@ -1,5 +1,28 @@
+<form class="form-inline" role="form">
+
+<div class="form-group">
+<select class="form-control">
+	<option>From...</option>
+	<option>Wallet</option>
+	<option>AMEX</option>
+</select>
+</div>
+
+<div class="form-group">
+<select class="form-control">
+	<option>To...</option>
+	<option>Wallet</option>
+	<option>AMEX</option>
+</select>
+</div>
+
+</form>
+
+<br /><br /><hr />
 <fieldset>
-	<legend>Transaction Information</legend>
+
+
+
 	
 	From: <%= transaction_form.collection_select(:debited_id, current_user.accounts.all, :id, :name) %>
 	<%= transaction_form.label :custom_debit %>

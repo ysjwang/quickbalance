@@ -2,90 +2,12 @@
 
 	<div class="col-md-12">
 
-		<%= form_for(@pending_transaction) do |pending_transaction_form| %>
+		<% if user_signed_in? %>
+			<%= render 'pages/signed_in_dashboard' %>
 
-			<%= render 'shared/error_messages', :object => pending_transaction_form.object %>
-			<fieldset>
-				<legend>Transaction Information</legend>
-
-				Shortcode: <%= pending_transaction_form.text_field :shortcode %>
-			</fieldset>
-
-			<%= pending_transaction_form.submit "Create Pending Transaction" %>
-			<% end %>
-
-			<table>
-				<thead>
-					<tr>
-						<th>From</th>
-						<th>Amount</th>
-						<th>To</th>
-						<th>Description</th>
-						<th>Date</th>
-						<th>Shortcode</th>
-						<th>Confirm</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% @pending_transactions.each do |pending_transaction| %>
-					<tr>
-						<td><%= pending_transaction.debited ? link_to(pending_transaction.debited.name, pending_transaction.debited) : pending_transaction.custom_debit %></td>
-
-						<td><%= pending_transaction.credited ? link_to(pending_transaction.credited.name, pending_transaction.credited) : pending_transaction.custom_credit %></td>
-						<td><%= pending_transaction.description %></td>
-						<td><%= pending_transaction.created_at.stamp("January 1, 2011 at 12:23 PM") %></td>
-						<td><%= pending_transaction.shortcode %></td>
-						<td>
-							<%= form_for(pending_transaction, :as => :pending_transaction, :url => confirm_pending_transaction_path(pending_transaction), :method => :put) do |f| %>
-							<%= f.hidden_field :id %>
-							<%= f.hidden_field :user_id %>
-							<%= f.submit "Confirm" %>
-							<% end %>
-						</td>
-
-
-
-					</tr>
-					<% end %>
-				</tbody>
-
-			</table>
-
-			<p>These are all transactions belonging to <%= current_user.full_name %>:</p>
-
-<%= form_for(@transaction) do |transaction_form| %>
-	<%= render 'shared/error_messages', :object => transaction_form.object %>
-	<%= render 'transactions/fields', :transaction_form => transaction_form %>
-	
-	<%= transaction_form.submit "Create Transaction" %>
-<% end %>
-
-
-<table>
-	<thead>
-		<tr>
-			<th>From</th>
-			<th>Amount</th>
-			<th>To</th>
-			<th>Description</th>
-			<th>Date</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @transactions.each do |transaction| %>
-			<tr>
-				<td><%= transaction.debited ? link_to(transaction.debited.name, transaction.debited) : transaction.custom_debit %></td>
-				<!-- <td><%= transaction.custom_debit %></td> !-->
-				<td><%= transaction.amount %></td>
-				
-				<!-- <td><%= transaction.custom_credit %></td> !-->
-				<td><%= transaction.credited ? link_to(transaction.credited.name, transaction.credited) : transaction.custom_credit %></td>
-				<td><%= transaction.description %></td>
-				<td><%= transaction.created_at.stamp("January 1, 2011 at 12:23 PM") %></td>
-			</tr>
+		<% else %>	
+			<%= render 'pages/marketing_home' %>
 		<% end %>
-	</tbody>
-</table>
 
 	</div>
 
