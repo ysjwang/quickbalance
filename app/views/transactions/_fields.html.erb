@@ -1,7 +1,7 @@
 <fieldset>
 	<legend>Transaction Information</legend>
 	
-	From: <%= transaction_form.collection_select(:debitted_id, current_user.accounts.all, :id, :name) %>
+	From: <%= transaction_form.collection_select(:debited_id, current_user.accounts.all, :id, :name) %>
 	<%= transaction_form.label :custom_debit %>
 	<%= transaction_form.text_field :custom_debit %>
 	

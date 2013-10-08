@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131008151314) do
+ActiveRecord::Schema.define(:version => 20131008181224) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20131008151314) do
   create_table "pending_transactions", :force => true do |t|
     t.integer  "user_id"
     t.decimal  "amount"
-    t.text     "desecription"
+    t.text     "description"
     t.string   "custom_credit"
     t.string   "custom_debit"
     t.string   "shortcode"

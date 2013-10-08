@@ -9,9 +9,9 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% transactions.each do |transactions| %>
+		<% transactions.each do |transaction| %>
 		<tr>
-			<td><%= transactions.debited ? link_to(transaction.debited.name, transaction.debited) : transaction.custom_debit %></td>
+			<td><%= transaction.debited ? link_to(transaction.debited.name, transaction.debited) : transaction.custom_debit %></td>
 			<td><%= transaction.amount %></td>
 
 			<td><%= transaction.credited ? link_to(transaction.credited.name, transaction.credited) : transaction.custom_credit %></td>

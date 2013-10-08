@@ -5,7 +5,7 @@
 #  id            :integer          not null, primary key
 #  user_id       :integer
 #  amount        :decimal(, )
-#  desecription  :text
+#  description   :text
 #  custom_credit :string(255)
 #  custom_debit  :string(255)
 #  shortcode     :string(255)
@@ -18,7 +18,7 @@
 class PendingTransaction < ActiveRecord::Base
   attr_accessible :amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :desecription, :shortcode, :user_id
 
-  belongs_to :user_id
+  belongs_to :user
   belongs_to :debited, :class_name => "Account"
   belongs_to :credited, :class_name => "Account"
 
@@ -38,7 +38,7 @@ class PendingTransaction < ActiveRecord::Base
   		amount: self.amount,
   		description: self.description,
   		debited_id: self.debited_id,
-  		credited_id: self.credited_id
+  		credited_id: self.credited_id,
   		custom_debit: save_custom_debit,
   		custom_credit: save_custom_credit)
 
@@ -80,7 +80,7 @@ class PendingTransaction < ActiveRecord::Base
   		# We know that there will be only a left side and a right side after the pivot.
 
   		# split it into 2 parts
-  		transactions_args = self.shortcode.split(amount, 2)
+  		transaction_args = self.shortcode.split(amount, 2)
   		debit_code = transaction_args.first.strip
   		credit_code = transaction_args.last.strip
 
@@ -107,7 +107,7 @@ class PendingTransaction < ActiveRecord::Base
   		if credit
   			# Shortcode is a hit for credit account
   			credited_id = credit.id
-  			custom_credit = credient.name
+  			custom_credit = credit.name
   		else
   			credited_id = nil
   			custom_credit = credit_code

@@ -9,7 +9,7 @@ class TransactionsController < ApplicationController
 
 		if @transaction.save
 			@transactions = current_user.transactions.all(order: 'created_at DESC')
-			@pending_transactions = current_user.pending_transactions.all(:order 'created_at DESC')
+			@pending_transactions = current_user.pending_transactions.all(order: 'created_at DESC')
 			@pending_transaction = current_user.pending_transactions.new(params[:pending_transaction])
 
 			redirect_to pages_home_path, :success => "Transaction successfully created."
@@ -20,6 +20,7 @@ class TransactionsController < ApplicationController
 			@pending_transaction = current_user.pending_transactions.new(params[:pending_transaction])
 
 			render 'pages/home'
+		end
 
 	end
 

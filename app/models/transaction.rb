@@ -17,7 +17,7 @@
 class Transaction < ActiveRecord::Base
   attr_accessible :amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :description, :user_id
 
-  belongs_to :user_id
+  belongs_to :user
 
   belongs_to :debited, :class_name => "Account"
   belongs_to :credited, :class_name => "Account"
@@ -34,7 +34,8 @@ class Transaction < ActiveRecord::Base
   	end
 
   	def sanitize_credit
-  		set credited_id to 0 if custom_credit is NOT blank
+  		# set credited_id to 0 if custom_credit is NOT blank
+      self.creditd_id = nil if !self.custom_credit.blank?
   	end
 
   	def validate
