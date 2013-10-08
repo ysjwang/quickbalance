@@ -8,6 +8,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.integer :debited_id
       t.string :custom_credit
       t.string :custom_debit
+      t.integer
 
       t.timestamps
     end

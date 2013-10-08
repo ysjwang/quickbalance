@@ -28,16 +28,47 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  attr_accessible :transaction_attributes
+  attr_accessible :pending_transactions_attributes
+
+  has_many :transactions
+  has_many :pending_transactions
+  has_many :accounts
+
+  accepts_nested_attributes_for :transactions
+  accepts_nested_attributes_for :pending_transactions
   # attr_accessible :title, :body
 
   before_validation :phone_to_number
 
+  after_create :create_default_accounts
+
+  def debit_shorthands
+  	shorthands = Array.new
+  	self.accounts.each do |account|
+  		shorthands.push(account.debit_shorthand)
+  	end
+  	return shorthands
+  end
+
+  def credit_shorthands
+  	shorthands = Array.new
+  	self.accounts.each do |account|
+  		shorthands.push(account.credit_shorthand)
+  	end
+  	return shorthands
+  end
 
 
   private
 
   	def phone_to_number
   		self.phone = self.phone.gsub(/\D/, '')
+  	end
+
+  	def create_default_accounts
+  		self.accounts.create(name: "Wallet", debit_shorthand: "w", credit_shorthand: "W")
   	end
 
 end
