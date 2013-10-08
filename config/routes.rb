@@ -1,7 +1,37 @@
 Quickbalance::Application.routes.draw do
+  get "transactions/new"
+
+  get "transactions/index"
+
+  get "transactions/show"
+
+  get "pending_transactions/show"
+
+  get "pending_transactions/new"
+
+  get "pending_transactions/confirm"
+
+  get "pending_transactions/index"
+
+  get "accounts/new"
+
+  get "accounts/create"
+
+  get "accounts/show"
+
+  get "accounts/index"
+
   devise_for :users
 
   get "pages/home"
+
+  resources :transactions
+  resources :pending_transactions do
+    member do
+      put 'confirm'
+    end
+  end
+  resources :accounts
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

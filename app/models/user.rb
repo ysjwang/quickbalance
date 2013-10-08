@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  attr_accessible :first_name, :last_name
+
   attr_accessible :transaction_attributes
   attr_accessible :pending_transactions_attributes
 
@@ -58,6 +60,10 @@ class User < ActiveRecord::Base
   		shorthands.push(account.credit_shorthand)
   	end
   	return shorthands
+  end
+
+  def full_name
+  	return self.first_name + ' ' + self.last_name
   end
 
 

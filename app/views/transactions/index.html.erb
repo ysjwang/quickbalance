@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="col-md-12">
+
+		<h1>Transactions</h1>
+		<p>These are all transactions belonging to <%= current_user.first_name %>:</p>
+
+
+
+		<table>
+			<thead>
+				<tr>
+					<th>From</th>
+					<th>Amount</th>
+					<th>To</th>
+					<th>Description</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @transactions.each do |transaction| %>
+				<tr>
+					<td><%= transaction.debitted ? link_to(transaction.debitted.name, transaction.debitted) : transaction.custom_debit %></td>
+					<!-- <td><%= transaction.custom_debit %></td> !-->
+					<td><%= transaction.amount %></td>
+					
+					<!-- <td><%= transaction.custom_credit %></td> !-->
+					<td><%= transaction.credited ? link_to(transaction.credited.name, transaction.credited) : transaction.custom_credit %></td>
+					<td><%= transaction.description %></td>
+					<td><%= transaction.created_at.stamp("January 1, 2011 at 12:23 PM") %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+
+	</div>
+</div>
