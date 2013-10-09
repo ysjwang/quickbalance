@@ -1,0 +1,4 @@
+$('#flash-area').html("<%= j(render partial: 'shared/flash_messages') %>"); 
+
+$(".data-create-account-form")[0].reset(); // clears the account creation form
+$("#accounts-overview-table").html("<%= escape_javascript( render(:partial => "accounts/accounts_overview_table", :locals => {:accounts => @accounts}) ) %>").fadeIn('slow');

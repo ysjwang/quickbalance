@@ -8,9 +8,12 @@ class AccountsController < ApplicationController
 		@account = current_user.accounts.build(params[:account])
 
 		if @account.save
-			redirect_to accounts_path, :success => "Account successfully created."
+			#redirect_to accounts_path, :success => "Account successfully created."
+			flash[:success] = "Account sucessfully created."
+			@accounts = current_user.accounts
 		else
-			render 'new'
+			flash[:error] = "There was a problem with adding your account."
+			#render 'new'
 		end
 	end
 

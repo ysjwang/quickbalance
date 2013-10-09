@@ -1,13 +1,29 @@
-<fieldset>
-	<legend>Accounts Information</legend>
-	<%= account_form.label :name %>
-	<%= account_form.text_field :name %>
+<div class="form-group">
+	<div class="col-md-5">
+		<%= account_form.label :name %>
+		<%= account_form.text_field :name, :class => "form-control", :placeholder => "American Express" %>
+		<span class="help-block">The name of the account you want to track.</span>
+	</div>
+	<div class="clearfix"></div>
+</div>
 
-	<br />
-	<%= account_form.label :debit_shorthand %>
-	<%= account_form.text_field :debit_shorthand %>
+<div class="form-group">
+	<div class="col-md-5">
+		<%= account_form.label :debit_shorthand %>
+		<%= account_form.text_field :debit_shorthand, :class => "form-control", :placeholder => "a" %>
+		<span class="help-block">The short-code to be used to track debiting. Usually a lowercase letter.</span>
+	</div>
+	<div class="clearfix"></div>
+</div>
 
-	<br />
-	<%= account_form.label :credit_shorthand %>
-	<%= account_form.text_field :credit_shorthand %>
-</fieldset>
+<div class="form-group">
+	<div class="col-md-5">
+		<%= account_form.label :credit_shorthand %>
+		<%= account_form.text_field :credit_shorthand, :class => "form-control", :placeholder => "A" %>
+		<span class="help-block">The short-code to be used to track crediting. Usually an letter.</span>
+
+	</div>
+	<div class="clearfix"></div>
+</div>
+
+
