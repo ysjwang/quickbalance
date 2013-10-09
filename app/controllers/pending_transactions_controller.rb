@@ -41,7 +41,6 @@ class PendingTransactionsController < ApplicationController
 
 
 
-
 	def index
 		@pending_transaction = current_user.pending_transactions.new
 		@pending_transactions = current_user.pending_transactions.all(order: 'created_at DESC')

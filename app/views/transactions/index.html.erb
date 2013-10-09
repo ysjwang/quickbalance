@@ -19,7 +19,7 @@
 			<tbody>
 				<% @transactions.each do |transaction| %>
 				<tr>
-					<td><%= transaction.debitted ? link_to(transaction.debitted.name, transaction.debitted) : transaction.custom_debit %></td>
+					<td><%= transaction.debited ? link_to(transaction.debited.name, transaction.debited) : transaction.custom_debit %></td>
 					<!-- <td><%= transaction.custom_debit %></td> !-->
 					<td><%= transaction.amount %></td>
 					

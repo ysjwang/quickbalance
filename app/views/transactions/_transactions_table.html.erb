@@ -1,0 +1,31 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>From</th>
+			<th>Amount</th>
+			<th>To</th>
+			<!-- <th>Description</th> we can add in description later once we figure out inline editng...!-->
+			<th>Date</th>
+
+			<th>Remove</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% transactions.each do |transaction| %>
+		<tr>
+			<td><%= transaction.debited ? link_to(transaction.debited.name, transaction.debited) : transaction.custom_debit %></td>
+			<td><%= number_to_currency(transaction.amount) %></td>
+			<td><%= transaction.credited ? link_to(transaction.credited.name, transaction.credited) : transaction.custom_credit %></td>
+			<!-- <td><%= transaction.description %></td> !-->
+			<td><%= transaction.created_at.stamp("January 1, 2011 at 12:23 PM") %></td>
+			<td>
+				<button class="btn btn-danger">Remove</button>
+			</td>
+
+
+
+		</tr>
+		<% end %>
+	</tbody>
+
+</table>

@@ -35,7 +35,7 @@ class Transaction < ActiveRecord::Base
 
   	def sanitize_credit
   		# set credited_id to 0 if custom_credit is NOT blank
-      self.creditd_id = nil if !self.custom_credit.blank?
+      self.credited_id = nil if !self.custom_credit.blank?
   	end
 
   	def validate
