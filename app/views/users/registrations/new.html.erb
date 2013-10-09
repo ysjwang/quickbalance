@@ -1,28 +1,75 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
 
-HELLO SIR
-  <div><%= f.label :first_name %><br />
-	<%= f.text_field :first_name %></div>
 
-	<div><%= f.label :last_name %><br />
-	<%= f.text_field :last_name %></div>
-	
-	<div><%= f.label :phone %><br />
-	<%= f.text_field :phone %></div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+      <div class="form-horizontal">
+        <h2>Sign up</h2>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+        <div class="form-group">
+          <div class="col-md-5">
+            <%= f.label :first_name %><br />
+            <%= f.text_field :first_name, :class => "form-control", :placeholder => "Jamie" %>
+            <div class="clearfix"></div>
+          </div>
+        </div>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
 
-<%= render "users/shared/links" %>
+        <div class="form-group">
+
+          <div class="col-md-5">
+            <%= f.label :last_name %><br />
+            <%= f.text_field :last_name, :class => "form-control", :placeholder => "Doe" %>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="col-md-5">
+            <%= f.label :phone %><br />
+            <%= f.text_field :phone, :class => "form-control", :placeholder => "555-555-5555" %>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="col-md-5">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, :class => "form-control", :placeholder => "Jamie.Doe@email.com" %>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="col-md-5">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, :class => "form-control" %>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="col-md-5">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, :class => "form-control" %>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+
+        <div>
+          <%= f.submit "Sign up", :class => "btn btn-success"%>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
