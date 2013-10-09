@@ -75,6 +75,7 @@ class User < ActiveRecord::Base
 
   	def create_default_accounts
   		self.accounts.create(name: "Wallet", debit_shorthand: "w", credit_shorthand: "W")
+      self.accounts.create(name: "Bank", debit_shorthand: "b", credit_shorthand: "B")
   	end
 
 end
