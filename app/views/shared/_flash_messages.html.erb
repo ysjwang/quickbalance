@@ -1,4 +1,6 @@
+<div id="flash-area">
 <% flash.each do |key, value| %>
 	<div class="alert <%= stylized_flash(key) %>"><%= value %></div>
 	<br />
 <% end %>
+</div>

@@ -30,4 +30,11 @@ class TransactionsController < ApplicationController
 
 	def show
 	end
+
+	def destroy
+		@transaction = Transaction.find(params[:id])
+		@transaction.destroy
+		flash[:success] = "Successfully removed transaction."
+		@transactions = Transaction.all
+	end
 end

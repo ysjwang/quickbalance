@@ -19,7 +19,7 @@
 			<!-- <td><%= transaction.description %></td> !-->
 			<td><%= transaction.created_at.stamp("January 1, 2011 at 12:23 PM") %></td>
 			<td>
-				<button class="btn btn-danger">Remove</button>
+				<%= button_to "Remove", transaction, :remote => true, :confirm => 'Are you sure?', :class => "btn btn-danger", :method => :delete %>
 			</td>
 
 

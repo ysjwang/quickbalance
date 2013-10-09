@@ -17,8 +17,11 @@ class PendingTransactionsController < ApplicationController
 		# check if the transaction's user id is the same as the one submitted...why??
 		if pending_transaction.user_id == params[:pending_transaction][:user_id].to_i
 			pending_transaction.confirm_transaction
+			flash[:success] = "Successfully confirmed this pending transaction."
+			@pending_transactions = PendingTransaction.all
+			@transactions = Transaction.all
 		end
-		redirect_to pages_home_path, :success => "Confirmed pending transaction"
+		# redirect_to pages_home_path, :success => "Confirmed pending transaction"
 
 	end
 
@@ -39,6 +42,12 @@ class PendingTransactionsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@pending_transaction = PendingTransaction.find(params[:id])
+		@pending_transaction.destroy
+		flash[:success] = "Successfully removed pending transaction."
+		@pending_transactions = PendingTransaction.all
+	end
 
 
 	def index

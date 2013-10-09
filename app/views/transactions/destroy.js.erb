@@ -1,0 +1,3 @@
+$('#flash-area').html("<%= j(render partial: 'shared/flash_messages') %>");
+
+$("#transactions-table").html("<%= escape_javascript( render(:partial => "transactions/transactions_table", :locals => {:transactions => @transactions}) ) %>").fadeIn('slow');
