@@ -11,6 +11,8 @@ gem 'stamp'
 gem 'possessive'
 gem 'devise'
 
+gem 'twilio-ruby'
+
 group :development do
 	gem 'annotate'
 end
