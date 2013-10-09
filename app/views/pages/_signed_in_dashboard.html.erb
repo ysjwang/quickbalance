@@ -9,7 +9,7 @@
 	<p>Type in shortcode for your transaction here! This is the same as the code you would normally text to Quickbalance.</p>
 
 	<!-- Quick Transaction !-->
-	<%= form_for(@pending_transaction, remote: true) do |pending_transaction_form| %>
+	<%= form_for(@pending_transaction, remote: true, :html => {:class => "data-shorthand-transaction-form"}) do |pending_transaction_form| %>
 	<%= render 'shared/error_messages', :object => pending_transaction_form.object %>
 	<%= render 'pending_transactions/shorthand_pending_transaction_form', :pending_transaction_form => pending_transaction_form %>
 
@@ -18,7 +18,7 @@
 	<hr />
 
 	<p>Alternatively, manually input a full transaction here.</p>
-	<%= form_for(@transaction) do |transaction_form| %>
+	<%= form_for(@transaction, remote: true, :html => {:class => "data-full-transaction-form"}) do |transaction_form| %>
 	<%= render 'shared/error_messages', :object => transaction_form.object %>
 	<%= render 'transactions/full_transaction_form', :transaction_form => transaction_form %>
 	<% end %>

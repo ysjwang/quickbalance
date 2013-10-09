@@ -1,4 +1,4 @@
-<div class="form-inline">
+<div class="form-inline" id="full-transaction-form">
 
 	<div class="form-group col-md-2">
 		<%= transaction_form.collection_select(:debited_id, current_user.accounts.all, :id, :name, {:include_blank => 'From...'}, {:class => 'form-control'}) %>
