@@ -33,12 +33,14 @@ class PendingTransactionsController < ApplicationController
 			@transaction = current_user.transactions.new(params[:transaction])
 			@transactions = current_user.transactions.all(order: 'created_at DESC')
 
-			redirect_to pages_home_path, :success => "Pending Transaction successfully created."
+			#redirect_to pages_home_path, :success => "Pending Transaction successfully created."
+			flash[:success] = "Successfully created this pending transaction."
 		else
 			@pending_transactions = current_user.pending_transactions.all(order: 'created_at DESC')
 			@transaction = current_user.transactions.new(params[:transaction])
 			@transactions = current_user.transactions.all(order: 'created_at DESC')
-			render 'pages/home'
+			flash[:error] = "There was a problem with your pending transaction."
+			#render 'pages/home'
 		end
 	end
 
