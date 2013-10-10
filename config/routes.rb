@@ -25,6 +25,8 @@ Quickbalance::Application.routes.draw do
 
   get "pages/home"
 
+  post "sms/create"
+
   resources :transactions
   resources :pending_transactions do
     member do
