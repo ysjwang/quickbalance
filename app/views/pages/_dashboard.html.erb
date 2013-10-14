@@ -6,7 +6,7 @@
 <div class="well" id="quick-transaction">
 	<h2>Quick Transaction</h2>
 
-	<p>Type in shortcode for your transaction here! This is the same as the code you would normally text to Quickbalance.</p>
+	<p>Type in shortcode for your transaction here! This is the same as the code you would normally text to Quickbalance at <strong>+1 (862) 307-8195</strong> from your <strong><%= current_user.phone %> number.</p>
 
 	<!-- Quick Transaction !-->
 	<%= form_for(@pending_transaction, remote: true, :html => {:class => "data-shorthand-transaction-form"}) do |pending_transaction_form| %>
