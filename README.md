@@ -8,8 +8,3 @@ A demo of this app is running [here](http://quickbalance.herokuapp.com/). Rememb
 
 Traditional non-shorthand transaction input is also supported via drop downs.
 
-== Development
-
-Currently only rudimentary error checking is supported. Also, SMS support is still not fully implemented yet.
-
-Also, validations are fairly weak right now. Next focus should be on validations.
