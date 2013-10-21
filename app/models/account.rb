@@ -29,14 +29,16 @@ class Account < ActiveRecord::Base
 	validates :credit_shorthand, presence: true
 	validates :debit_shorthand, presence: true
 	validates :user_id, presence: true
-	validate :unique_shorthands
+
+	# Custom validations
+	validate :validate_unique_shorthands
 
 
 
 	# BEGIN PRIVATE
 	private
 
-	def unique_shorthands
+	def validate_unique_shorthands
 		# First, get the user
 		user = User.find_by_id(user_id)
 
