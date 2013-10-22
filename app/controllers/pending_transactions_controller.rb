@@ -26,12 +26,21 @@ class PendingTransactionsController < ApplicationController
   end
 
   def create
-    @pending_transaction = current_user.pending_transactions.new(params[:pending_transaction])
 
+    @pending_transaction = current_user.pending_transactions.new(pending_transactions_params)
     if @pending_transaction.save
       @pending_transactions = current_user.pending_transactions.all(order: 'created_at DESC')
       @transaction = current_user.transactions.new(params[:transaction])
+      
       @transactions = current_user.transactions.all(order: 'created_at DESC')
+
+      
+      respond_to do |format|
+        format.js {
+          render :create
+        }
+      end
+
 
       #redirect_to pages_home_path, :success => "Pending Transaction successfully created."
       flash[:success] = "Successfully created this pending transaction."
@@ -39,9 +48,18 @@ class PendingTransactionsController < ApplicationController
       @pending_transactions = current_user.pending_transactions.all(order: 'created_at DESC')
       @transaction = current_user.transactions.new(params[:transaction])
       @transactions = current_user.transactions.all(order: 'created_at DESC')
+
+      respond_to do |format|
+        format.js {
+          render :create
+        }
+      end
+
       flash[:error] = "There was a problem with your pending transaction."
       #render 'pages/home'
     end
+
+
   end
 
   def destroy
@@ -60,15 +78,20 @@ class PendingTransactionsController < ApplicationController
 
   private
 
-    def record_not_valid
-      @pending_transaction = current_user.pending_transactions.new(param[:pending_transaction])
-      @pending_transactions = current_user.pending_transactions.all(order: 'created_at DESC')
-      @transaction = current_user.transactions.new(params[:transaction])
-      @transactions = current_user.transactions.all(order: 'created_at DESC')
-      flash[:error] = "Something was wrong with confirming your pending transaction."
-      render 'pages/home'
+  def record_not_valid
+    @pending_transaction = current_user.pending_transactions.new(pending_transactions_params)
+    @pending_transactions = current_user.pending_transactions.all(order: 'created_at DESC')
+    @transaction = current_user.transactions.new(params[:transaction])
+    @transactions = current_user.transactions.all(order: 'created_at DESC')
+    flash[:error] = "Something was wrong with confirming your pending transaction."
+    render 'pages/home'
 
-    end
+  end
+
+  def pending_transactions_params
+    # attr_accessible :amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :desecription, :shortcode, :user_id
+    params.require(:pending_transaction).permit(:amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :description, :shortcode, :user_id)
+  end
 
 
 end

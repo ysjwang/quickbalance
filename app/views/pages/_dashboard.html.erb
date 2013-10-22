@@ -9,7 +9,7 @@
   <p>Type in shortcode for your transaction here! This is the same as the code you would normally text to Quickbalance at <strong>+1 (862) 307-8195</strong> from your <strong><%= current_user.phone %> number.</p>
 
   <!-- Quick Transaction !-->
-  <%= form_for(@pending_transaction, remote: true, :html => {:class => "data-shorthand-transaction-form"}) do |pending_transaction_form| %>
+  <%= form_for(@pending_transaction,  remote: true, :html => { :class => "data-shorthand-transaction-form"}) do |pending_transaction_form| %>
   <%= render 'shared/error_messages', :object => pending_transaction_form.object %>
   <%= render 'pending_transactions/shorthand_pending_transaction_form', :pending_transaction_form => pending_transaction_form %>
 

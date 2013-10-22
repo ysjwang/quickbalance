@@ -38,4 +38,11 @@ class TransactionsController < ApplicationController
     flash[:success] = "Successfully removed transaction."
     @transactions = Transaction.all
   end
+
+  private
+
+  def transaction_params
+    # attr_accessible :amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :description, :user_id
+    params.require(:transaction).permit(:amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :description, :user_id)
+  end
 end

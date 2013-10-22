@@ -29,4 +29,14 @@ class AccountsController < ApplicationController
   def index
     @accounts = current_user.accounts.all
   end
+
+  private
+
+  def account_params
+    # attr_accessible :credit_shorthand, :debit_shorthand, :name, :user_id, :credit_transactions, :debit_transactions
+    params.require(:account).permit(:credit_shorthand, :debit_shorthand, :name, :user_id, :credit_transactions, :debit_transactions)
+  end
+
+
+
 end
