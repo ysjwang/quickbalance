@@ -1,6 +1,6 @@
 <div class="input-group">
-	<%= pending_transaction_form.text_field :shortcode, class: 'form-control input-lg', placeholder: "Enter a shortcode transaction here." %>
-	<span class="input-group-btn"><%= pending_transaction_form.submit "Create Pending", class: 'btn btn-lg btn-success' %></span>
+  <%= pending_transaction_form.text_field :shortcode, class: 'form-control input-lg', placeholder: "Enter a shortcode transaction here." %>
+  <span class="input-group-btn"><%= pending_transaction_form.submit "Create Pending", class: 'btn btn-lg btn-success' %></span>
 
 </div>
 <span class="help-block">For example, "<%= current_user.accounts.first.debit_shorthand %> 100 <%= current_user.accounts.last.credit_shorthand %>" means moving $100 from your <%= current_user.accounts.first.name %> account to your <%= current_user.accounts.last.name %> account. Note this is <strong>case sensitive</strong>.</span>

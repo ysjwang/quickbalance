@@ -1,41 +1,41 @@
 <nav class="navbar navbar-default" role="navigation">
-	<!-- Brand and toggle get grouped for better mobile display -->
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="<%= root_path %>">Quick Balance</a>
-	</div>
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="<%= root_path %>">Quick Balance</a>
+  </div>
 
-	<!-- Collect the nav links, forms, and other content for toggling -->
-	<div class="collapse navbar-collapse navbar-ex1-collapse">
-		<ul class="nav navbar-nav">
-			<li><%= link_to 'Home', root_path %></li>
-			<li><%= link_to 'Sign Up', new_user_registration_path %></li>
-		</ul>
-
-
-
-		<%= form_for("user", :html => { :class => "navbar-form navbar-right form-inline" }, :url => user_session_path) do |f| %>
-
-		<div class="form-group">
-			<%= f.text_field :email, :class => "form-control", :placeholder => "E-mail" %>
-		</div>
-
-		<div class="form-group">
-			<%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
-		</div>
-
-		<%= f.submit 'Login', :class => "btn btn-default"%>
-
-		
-		<% end %>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+    </ul>
 
 
 
+    <%= form_for("user", :html => { :class => "navbar-form navbar-right form-inline" }, :url => user_session_path) do |f| %>
 
-	</div><!-- /.navbar-collapse -->
+    <div class="form-group">
+      <%= f.text_field :email, :class => "form-control", :placeholder => "E-mail" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+    </div>
+
+    <%= f.submit 'Login', :class => "btn btn-default"%>
+
+    
+    <% end %>
+
+
+
+
+  </div><!-- /.navbar-collapse -->
 </nav>

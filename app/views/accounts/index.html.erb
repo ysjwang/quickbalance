@@ -1,27 +1,27 @@
 <div class="row">
-	<div class="col-md-12">
-		<div class="well">
-			<h2>Accounts</h2>
-			<p>These are all accounts belonging to <%= @current_user.first_name %>:</p>
+  <div class="col-md-12">
+    <div class="well">
+      <h2>Accounts</h2>
+      <p>These are all accounts belonging to <%= @current_user.first_name %>:</p>
 
-			<%= render 'accounts/accounts_overview_table', accounts: @accounts %>
+      <%= render 'accounts/accounts_overview_table', accounts: @accounts %>
 
-		</div>
+    </div>
 
-		<div class="well">
-			<h2>Set up a new account</h2>
-			
+    <div class="well">
+      <h2>Set up a new account</h2>
+      
 
-			<%= form_for(Account.new, :remote => true, :html => {:class => "form-horizontal data-create-account-form"}) do |account_form| %>
-			<%= render 'shared/error_messages', :object => account_form.object %>
-			<%= render 'fields', :account_form => account_form %>
+      <%= form_for(Account.new, :remote => true, :html => {:class => "form-horizontal data-create-account-form"}) do |account_form| %>
+      <%= render 'shared/error_messages', :object => account_form.object %>
+      <%= render 'fields', :account_form => account_form %>
 
-			<%= account_form.submit "Create Account", :class => "btn btn-success" %>
-			<% end %>
+      <%= account_form.submit "Create Account", :class => "btn btn-success" %>
+      <% end %>
 
-			<br />
-			
-		</div>
-	</div>
+      <br />
+      
+    </div>
+  </div>
 
 </div>
