@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -47,35 +47,35 @@ class User < ActiveRecord::Base
   after_create :create_default_accounts
 
   def debit_shorthands
-  	shorthands = Array.new
-  	self.accounts.each do |account|
-  		shorthands.push(account.debit_shorthand)
-  	end
-  	return shorthands
+    shorthands = Array.new
+    self.accounts.each do |account|
+      shorthands.push(account.debit_shorthand)
+    end
+    return shorthands
   end
 
   def credit_shorthands
-  	shorthands = Array.new
-  	self.accounts.each do |account|
-  		shorthands.push(account.credit_shorthand)
-  	end
-  	return shorthands
+    shorthands = Array.new
+    self.accounts.each do |account|
+      shorthands.push(account.credit_shorthand)
+    end
+    return shorthands
   end
 
   def full_name
-  	return self.first_name + ' ' + self.last_name
+    return self.first_name + ' ' + self.last_name
   end
 
 
   private
 
-  	def phone_to_number
-  		self.phone = self.phone.gsub(/\D/, '')
-  	end
+  def phone_to_number
+    self.phone = self.phone.gsub(/\D/, '')
+  end
 
-  	def create_default_accounts
-  		self.accounts.create(name: "Wallet", debit_shorthand: "w", credit_shorthand: "W")
-      self.accounts.create(name: "Bank", debit_shorthand: "b", credit_shorthand: "B")
-  	end
+  def create_default_accounts
+    self.accounts.create(name: "Wallet", debit_shorthand: "w", credit_shorthand: "W")
+    self.accounts.create(name: "Bank", debit_shorthand: "b", credit_shorthand: "B")
+  end
 
 end

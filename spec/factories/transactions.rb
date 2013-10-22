@@ -1,11 +1,11 @@
 require 'faker'
 
 FactoryGirl.define do
-	factory :transaction do
-		amount { rand(1..500) }
-		description { Faker::Lorem.sentences }
-		
-	end
+  factory :transaction do
+    amount { rand(1..500) }
+    description { Faker::Lorem.sentences }
+    
+  end
 end
 
 
