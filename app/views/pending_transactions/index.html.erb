@@ -1,49 +1,49 @@
 <div class="row">
-	<div class="col-mod-12">
+  <div class="col-mod-12">
 
-		<h1>Pending Transactions</h1>
+    <h1>Pending Transactions</h1>
 
-		<%= form_for(@pending_transaction) do |pending_transaction_form| %>
+    <%= form_for(@pending_transaction) do |pending_transaction_form| %>
 
-		<%= render 'shared/error_messages', :object =>pending_transaction_form.object %>
-		
-		<fieldset>
-			<legend>Transaction Information</legend>
+    <%= render 'shared/error_messages', :object =>pending_transaction_form.object %>
+    
+    <fieldset>
+      <legend>Transaction Information</legend>
 
-			Shortcode: <%= pending_transaction_form.text_field :shortcode %>
+      Shortcode: <%= pending_transaction_form.text_field :shortcode %>
 
-			
-		</fieldset>
-		
-		<%= pending_transaction_form.submit "Create Pending Transaction" %>
-		<% end %>
+      
+    </fieldset>
+    
+    <%= pending_transaction_form.submit "Create Pending Transaction" %>
+    <% end %>
 
 
-		<table>
-			<thead>
-				<tr>
-					<th>From</th>
-					<th>Amount</th>
-					<th>To</th>
-					<th>Description</th>
-					<th>Date</th>
-					<th>Shortcode</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @pending_transactions.each do |pending_transaction| %>
-				<tr>
-					<td><%= pending_transaction.debitted ? link_to(pending_transaction.debitted.name, pending_transaction.debitted) : pending_transaction.custom_debit %></td>
-					<td><%= pending_transaction.amount %></td>
-					
-					<td><%= pending_transaction.credited ? link_to(pending_transaction.credited.name, pending_transaction.credited) : pending_transaction.custom_credit %></td>
-					<td><%= pending_transaction.description %></td>
-					<td><%= pending_transaction.created_at.stamp("January 1, 2011 at 12:23 PM") %></td>
-					<td><%= pending_transaction.shortcode %></td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
+    <table>
+      <thead>
+        <tr>
+          <th>From</th>
+          <th>Amount</th>
+          <th>To</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Shortcode</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pending_transactions.each do |pending_transaction| %>
+        <tr>
+          <td><%= pending_transaction.debitted ? link_to(pending_transaction.debitted.name, pending_transaction.debitted) : pending_transaction.custom_debit %></td>
+          <td><%= pending_transaction.amount %></td>
+          
+          <td><%= pending_transaction.credited ? link_to(pending_transaction.credited.name, pending_transaction.credited) : pending_transaction.custom_credit %></td>
+          <td><%= pending_transaction.description %></td>
+          <td><%= pending_transaction.created_at.stamp("January 1, 2011 at 12:23 PM") %></td>
+          <td><%= pending_transaction.shortcode %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-	</div>
+  </div>
 </div>

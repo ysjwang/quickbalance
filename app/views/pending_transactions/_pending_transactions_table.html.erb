@@ -1,42 +1,42 @@
 <div id="pending-transactions-table">
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>From</th>
-				<th>Amount</th>
-				<th>To</th>
-				<!-- <th>Description</th> we can add in description later once we figure out inline editng...!-->
-				<th>Date</th>
-				<th>Shortcode</th>
-				<th>Confirm</th>
-				<th>Remove</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% pending_transactions.each do |pending_transaction| %>
-			<tr>
-				<td><%= pending_transaction.debited ? link_to(pending_transaction.debited.name, pending_transaction.debited) : pending_transaction.custom_debit %></td>
-				<td><%= number_to_currency(pending_transaction.amount) %></td>
-				<td><%= pending_transaction.credited ? link_to(pending_transaction.credited.name, pending_transaction.credited) : pending_transaction.custom_credit %></td>
-				<!-- <td><%= pending_transaction.description %></td> !-->
-				<td><%= pending_transaction.created_at.stamp("January 1, 2011 at 12:23 PM") %></td>
-				<td><%= pending_transaction.shortcode %></td>
-				<td>
-					<%= form_for(pending_transaction, :as => :pending_transaction, :url => confirm_pending_transaction_path(pending_transaction), :method => :put, :remote => true) do |f| %>
-					<%= f.hidden_field :id %>
-					<%= f.hidden_field :user_id %>
-					<%= f.submit "Confirm", class: 'btn btn-info' %>
-					<% end %>
-				</td>
-				<td>
-					<%= button_to "Remove", pending_transaction, :remote => true, :confirm => 'Are you sure you want to remove this pending transaction?', :class => "btn btn-danger", :method => :delete %>
-				</td>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>Amount</th>
+        <th>To</th>
+        <!-- <th>Description</th> we can add in description later once we figure out inline editng...!-->
+        <th>Date</th>
+        <th>Shortcode</th>
+        <th>Confirm</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% pending_transactions.each do |pending_transaction| %>
+      <tr>
+        <td><%= pending_transaction.debited ? link_to(pending_transaction.debited.name, pending_transaction.debited) : pending_transaction.custom_debit %></td>
+        <td><%= number_to_currency(pending_transaction.amount) %></td>
+        <td><%= pending_transaction.credited ? link_to(pending_transaction.credited.name, pending_transaction.credited) : pending_transaction.custom_credit %></td>
+        <!-- <td><%= pending_transaction.description %></td> !-->
+        <td><%= pending_transaction.created_at.stamp("January 1, 2011 at 12:23 PM") %></td>
+        <td><%= pending_transaction.shortcode %></td>
+        <td>
+          <%= form_for(pending_transaction, :as => :pending_transaction, :url => confirm_pending_transaction_path(pending_transaction), :method => :put, :remote => true) do |f| %>
+          <%= f.hidden_field :id %>
+          <%= f.hidden_field :user_id %>
+          <%= f.submit "Confirm", class: 'btn btn-info' %>
+          <% end %>
+        </td>
+        <td>
+          <%= button_to "Remove", pending_transaction, :remote => true, :confirm => 'Are you sure you want to remove this pending transaction?', :class => "btn btn-danger", :method => :delete %>
+        </td>
 
 
 
-			</tr>
-			<% end %>
-		</tbody>
+      </tr>
+      <% end %>
+    </tbody>
 
-	</table>
+  </table>
 </div>

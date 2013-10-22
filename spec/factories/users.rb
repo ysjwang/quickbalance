@@ -21,19 +21,19 @@ require 'faker'
 #
 
 FactoryGirl.define do
-	factory :user do
-		email { Faker::Internet.email }
-		password { 'password' }
-		password_confirmation { 'password' }
-		first_name { Faker::Name.first_name }
-		last_name { Faker::Name.last_name }
-		phone { '+1' + (0...10).map { rand(9) }.join.to_s } # we'll need to test with this format for now.
+  factory :user do
+    email { Faker::Internet.email }
+    password { 'password' }
+    password_confirmation { 'password' }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    phone { '+1' + (0...10).map { rand(9) }.join.to_s } # we'll need to test with this format for now.
 
-		factory :user_without_default_accounts do
-			after(:build) do |user| 
-				User.skip_callback(:create, :after, :create_default_accounts)
-			end
-		end
+    factory :user_without_default_accounts do
+      after(:build) do |user| 
+        User.skip_callback(:create, :after, :create_default_accounts)
+      end
+    end
 
-	end
+  end
 end
