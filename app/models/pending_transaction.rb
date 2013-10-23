@@ -47,6 +47,17 @@ class PendingTransaction < ActiveRecord::Base
     end
   end
 
+  def is_confirm_ready?
+    # Checks to see if this pending transaction is ready to be confirmed
+    if !self.amount.blank? && ( !self.debited_id.blank? || !self.custom_debit.blank?) && ( !self.credited_id.blank? || !self.custom_credit.blank?)
+      return true
+    else
+      return false
+    end
+
+
+  end
+
   def interpret_shortcode
     # Possible formats we're expecting:
     # w 100     = This means we spent 100 from w

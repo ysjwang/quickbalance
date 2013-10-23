@@ -22,14 +22,14 @@
         <td><%= pending_transaction.created_at.stamp("January 1, 2011 at 12:23 PM") %></td>
         <td><%= pending_transaction.shortcode %></td>
         <td>
-          <%= form_for(pending_transaction, :as => :pending_transaction, :url => confirm_pending_transaction_path(pending_transaction), :method => :put, :remote => true) do |f| %>
+          <%= form_for(pending_transaction, :as => :pending_transaction, :url => confirm_pending_transaction_path(pending_transaction), :method => :patch, :remote => true) do |f| %>
           <%= f.hidden_field :id %>
           <%= f.hidden_field :user_id %>
           <%= f.submit "Confirm", class: 'btn btn-info' %>
           <% end %>
         </td>
         <td>
-          <%= button_to "Remove", pending_transaction, :remote => true, :confirm => 'Are you sure you want to remove this pending transaction?', :class => "btn btn-danger", :method => :delete %>
+          <%= button_to "Remove", pending_transaction, :remote => true, data: {confirm: 'Are you sure you want to remove this pending transaction?' }, :class => "btn btn-danger", :method => :delete %>
         </td>
 
 
