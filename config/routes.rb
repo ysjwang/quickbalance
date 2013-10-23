@@ -30,7 +30,7 @@ Quickbalance::Application.routes.draw do
   resources :transactions
   resources :pending_transactions do
     member do
-      put 'confirm'
+      patch 'confirm'
     end
   end
   resources :accounts

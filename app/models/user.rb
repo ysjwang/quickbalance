@@ -27,12 +27,12 @@ class User < ActiveRecord::Base
   :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  # attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  attr_accessible :first_name, :last_name, :phone
+  # attr_accessible :first_name, :last_name, :phone
 
-  attr_accessible :transaction_attributes
-  attr_accessible :pending_transactions_attributes
+  # attr_accessible :transaction_attributes
+  # attr_accessible :pending_transactions_attributes
 
   has_many :transactions
   has_many :pending_transactions
@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :transactions
   accepts_nested_attributes_for :pending_transactions
+  accepts_nested_attributes_for :accounts
   # attr_accessible :title, :body
 
   before_validation :phone_to_number

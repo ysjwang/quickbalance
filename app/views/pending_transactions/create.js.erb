@@ -1,4 +1,5 @@
-$('#flash-area').html("<%= j(render partial: 'shared/flash_messages') %>"); 
+
+$('#flash-area').html("<%= j(render partial: 'shared/flash_messages') %>");
 
 $(".data-shorthand-transaction-form")[0].reset(); // clears the shorthand form
 $("#pending-transactions-table").html("<%= escape_javascript( render(:partial => "pending_transactions/pending_transactions_table", :locals => {:pending_transactions => @pending_transactions}) ) %>").fadeIn('slow');

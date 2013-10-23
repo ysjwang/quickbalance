@@ -5,12 +5,12 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = current_user.transactions.new(params[:transaction])
+    @transaction = current_user.transactions.new(transaction_params)
 
     if @transaction.save
       @transactions = current_user.transactions.all(order: 'created_at DESC')
       @pending_transactions = current_user.pending_transactions.all(order: 'created_at DESC')
-      @pending_transaction = current_user.pending_transactions.new(params[:pending_transaction])
+      @pending_transaction = current_user.pending_transactions.new(transaction_params)
 
       #redirect_to pages_home_path, :success => "Transaction successfully created."
       flash[:success] = "Successfully created this transaction"
@@ -37,5 +37,12 @@ class TransactionsController < ApplicationController
     @transaction.destroy
     flash[:success] = "Successfully removed transaction."
     @transactions = Transaction.all
+  end
+
+  private
+
+  def transaction_params
+    # attr_accessible :amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :description, :user_id
+    params.require(:transaction).permit(:amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :description, :user_id)
   end
 end

@@ -16,7 +16,7 @@
 #
 
 class PendingTransaction < ActiveRecord::Base
-  attr_accessible :amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :desecription, :shortcode, :user_id
+  # attr_accessible :amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :desecription, :shortcode, :user_id
 
   belongs_to :user
   belongs_to :debited, :class_name => "Account"
@@ -45,6 +45,17 @@ class PendingTransaction < ActiveRecord::Base
       # successfully created...
       self.destroy # we don't need this pending transaction anymore.
     end
+  end
+
+  def is_confirm_ready?
+    # Checks to see if this pending transaction is ready to be confirmed
+    if !self.amount.blank? && ( !self.debited_id.blank? || !self.custom_debit.blank?) && ( !self.credited_id.blank? || !self.custom_credit.blank?)
+      return true
+    else
+      return false
+    end
+
+
   end
 
   def interpret_shortcode
