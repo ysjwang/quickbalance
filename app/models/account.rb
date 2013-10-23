@@ -39,7 +39,6 @@ class Account < ActiveRecord::Base
   private
 
   def validate_unique_shorthands
-    puts "Validating unique shorthands"
     # First, get the user
     user = User.find_by_id(user_id)
 
