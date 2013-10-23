@@ -15,6 +15,8 @@ gem 'devise'
 
 gem 'twilio-ruby'
 
+gem 'thin'
+
 group :development do
 	gem 'annotate'
 end
