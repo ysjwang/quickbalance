@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
     return unless request.xhr?
 
 
-    puts "after return in flash"
     # add different flashes to header
     response.headers['X-Flash-Error'] = flash[:error] unless flash[:error].blank?
     response.headers['X-Flash-Alert'] = flash[:alert] unless flash[:alert].blank?
@@ -20,11 +19,9 @@ class ApplicationController < ActionController::Base
     response.headers['X-Flash-Message'] = flash[:success] unless flash[:success].blank?
 
 
-    puts "after response headers"
     # make sure flash does not appear on the next page
     flash.discard
 
-    puts "after discard"
   end
 
   protected

@@ -38,7 +38,8 @@ class PendingTransactionsController < ApplicationController
       
       @transactions = current_user.transactions.all(order: 'created_at DESC')
 
-      
+      flash[:success] = "Successfully created this pending transaction."
+
       respond_to do |format|
         format.js {
           render :create
@@ -47,11 +48,13 @@ class PendingTransactionsController < ApplicationController
 
 
       #redirect_to pages_home_path, :success => "Pending Transaction successfully created."
-      flash[:success] = "Successfully created this pending transaction."
+      
     else
       @pending_transactions = current_user.pending_transactions.all(order: 'created_at DESC')
       @transaction = current_user.transactions.new(params[:transaction])
       @transactions = current_user.transactions.all(order: 'created_at DESC')
+
+      flash[:error] = "There was a problem with your pending transaction."
 
       respond_to do |format|
         format.js {
@@ -59,7 +62,7 @@ class PendingTransactionsController < ApplicationController
         }
       end
 
-      flash[:error] = "There was a problem with your pending transaction."
+      
       #render 'pages/home'
     end
 
