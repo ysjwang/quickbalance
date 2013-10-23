@@ -5,16 +5,52 @@ class AccountsController < ApplicationController
   end
 
   def create
-    @account = current_user.accounts.build(params[:account])
+
+    puts "%%%%%%%%%%%%%%%%%%%%Prelim Accounts is #{current_user.accounts.count} compared to #{current_user.accounts.all.count}"
+
+    @account = current_user.accounts.new(account_params)
+    puts "%%%%%%%%%%%%%%%%%%%%First Accounts is #{current_user.accounts.count} compared to #{current_user.accounts.all.count}"
+
 
     if @account.save
+      @accounts = current_user.accounts.all(order: 'created_at DESC')
       #redirect_to accounts_path, :success => "Account successfully created."
       flash[:success] = "Account sucessfully created."
-      @accounts = current_user.accounts
+      # respond_to :js
+      respond_to do |format|
+        format.js {
+          render :create
+        }
+      end
+      puts "%%%%%%%%%%%%%%%%%%%%Success Accounts is #{@accounts.count} compared to #{current_user.accounts.all.count} compared to #{current_user.accounts.count}"
+
+      
     else
+      @accounts = current_user.accounts.all(order: 'created_at DESC')
+
+      @accounts.each do |hello|
+        puts "+1"
+
+      end
+
       flash[:error] = "There was a problem with adding your account."
+      respond_to do |format|
+        format.js {
+          render :create
+        }
+      end
+      # render 'index'
+
       #render 'new'
+      puts 'endof nay'
+      puts "%%%%%%%%%%%%%%%%%%%%Fail Accounts is #{@accounts.count} compared to #{current_user.accounts.all.count} compared to #{current_user.accounts.count}"
+
     end
+
+    puts "%%%%%%%%%%%%%%%%%%%%Final Accounts is #{@accounts.count} compared to #{current_user.accounts.all.count} compared to #{current_user.accounts.count}"
+
+
+
   end
 
   def show
@@ -28,6 +64,7 @@ class AccountsController < ApplicationController
 
   def index
     @accounts = current_user.accounts.all
+    puts "index renders accounts as #{@accounts.count}"
   end
 
   private

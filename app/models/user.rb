@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :transactions
   accepts_nested_attributes_for :pending_transactions
+  accepts_nested_attributes_for :accounts
   # attr_accessible :title, :body
 
   before_validation :phone_to_number

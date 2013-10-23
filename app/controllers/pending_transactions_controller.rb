@@ -31,6 +31,7 @@ class PendingTransactionsController < ApplicationController
   end
 
   def create
+    puts "%%%%%% PRELIM IS #{current_user.pending_transactions.all.count}"
     @pending_transaction = current_user.pending_transactions.new(pending_transactions_params)
     if @pending_transaction.save
       @pending_transactions = current_user.pending_transactions.all(order: 'created_at DESC')
@@ -50,7 +51,15 @@ class PendingTransactionsController < ApplicationController
       #redirect_to pages_home_path, :success => "Pending Transaction successfully created."
       
     else
+      puts "%%%%%%%%%%%%%%%%%NOW IS #{current_user.pending_transactions.all.count}"
       @pending_transactions = current_user.pending_transactions.all(order: 'created_at DESC')
+      puts "%%%%%%%%%%%%%%%%% BUT WAIT! #{@pending_transactions.count} compared to #{current_user.pending_transactions.all.count} compared to #{current_user.pending_transactions.count}"
+
+      @pending_transactions.each do |hello|
+
+        puts "+1"
+      end
+
       @transaction = current_user.transactions.new(params[:transaction])
       @transactions = current_user.transactions.all(order: 'created_at DESC')
 
@@ -102,7 +111,7 @@ class PendingTransactionsController < ApplicationController
 
   def pending_transactions_params
     # attr_accessible :amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :desecription, :shortcode, :user_id
-    params.require(:pending_transaction).permit(:id, :amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :description, :shortcode, :user_id)
+    params.require(:pending_transaction).permit(:amount, :credited_id, :custom_credit, :custom_debit, :debited_id, :description, :shortcode, :user_id)
   end
 
 
